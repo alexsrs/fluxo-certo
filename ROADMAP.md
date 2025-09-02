@@ -7,7 +7,7 @@ Este documento descreve as principais fases do desenvolvimento do projeto, desde
 ### Fase 1: Estrutura e Fundação do Projeto (≈40 horas)
 
 - [x] Definição da arquitetura (Monorepo vs. Repositórios separados) - (4 horas)
-- [ ] Configuração do ambiente de desenvolvimento (Docker, linters, formatters) - (16 horas)
+- [x] Configuração do ambiente de desenvolvimento (Docker, linters, formatters) - (16 horas)
 - [x] Inicialização dos projetos front-end (React/Vite) e back-end (Node/Express) - (8 horas)
 - [ ] Definição do schema inicial do banco de dados com Prisma - (12 horas)
 
