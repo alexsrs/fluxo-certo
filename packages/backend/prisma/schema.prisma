@@ -1,0 +1,61 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Lead {
+  id          String    @id @default(cuid())
+  name        String
+  email       String    @unique
+  phone       String?
+  company     String?
+  message     String?
+  source      String?   // De onde veio o lead (formulário, chat, etc.)
+  status      LeadStatus @default(NEW)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  
+  // Relacionamento com agendamentos
+  appointments Appointment[]
+  
+  @@map("leads")
+}
+
+model Appointment {
+  id            String            @id @default(cuid())
+  leadId        String
+  scheduledAt   DateTime
+  status        AppointmentStatus @default(SCHEDULED)
+  notes         String?
+  meetingLink   String?
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
+  
+  // Relacionamento com lead
+  lead          Lead              @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  
+  @@map("appointments")
+}
+
+enum LeadStatus {
+  NEW
+  CONTACTED
+  QUALIFIED
+  CONVERTED
+  LOST
+}
+
+enum AppointmentStatus {
+  SCHEDULED
+  CONFIRMED
+  COMPLETED
+  CANCELLED
+  NO_SHOW
+}

@@ -1,48 +1,80 @@
 version: '3.8'
 
 services:
+  # Banco de dados PostgreSQL
   db:
-    image: postgres:14
+    image: postgres:15-alpine
     restart: always
     environment:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
       POSTGRES_DB: fluxocerto
     ports:
-      - "5432:5432"
+      - '5432:5432'
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
       - app-network
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U user -d fluxocerto']
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
+  # Backend API
   backend:
     build:
       context: ./packages/backend
     ports:
-      - "3001:3001"
+      - '3001:3001'
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     volumes:
       - ./packages/backend:/app
       - /app/node_modules
     environment:
-      DATABASE_URL: "postgresql://user:password@db:5432/fluxocerto?schema=public"
+      DATABASE_URL: 'postgresql://user:password@db:5432/fluxocerto?schema=public'
+      PORT: 3001
+      NODE_ENV: development
     networks:
       - app-network
+    restart: unless-stopped
 
+  # Frontend React
   frontend:
     build:
       context: ./packages/frontend
     ports:
-      - "5173:5173"
+      - '5173:5173'
     volumes:
       - ./packages/frontend:/app
       - /app/node_modules
+    environment:
+      VITE_API_URL: 'http://localhost:3001/api'
     networks:
       - app-network
+    restart: unless-stopped
+
+  # pgAdmin para gerenciamento do banco (opcional)
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    ports:
+      - '5050:80'
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@fluxocerto.com
+      PGADMIN_DEFAULT_PASSWORD: admin123
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    networks:
+      - app-network
+    restart: unless-stopped
+    profiles:
+      - tools
 
 volumes:
   postgres_data:
+  pgadmin_data:
 
 networks:
   app-network:

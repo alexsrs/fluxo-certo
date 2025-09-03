@@ -1,20 +1,31 @@
-# Usa uma imagem base do Node.js
-FROM node:20-alpine
+# Use uma versão mais específica e segura do Node.js
+FROM node:lts-alpine
 
-# Define o diretório de trabalho dentro do contêiner
+# Crie um usuário não-root para executar a aplicação
+RUN addgroup -g 1001 -S nodejs
+RUN adduser -S nextjs -u 1001
+
+# Defina o diretório de trabalho
 WORKDIR /app
 
-# Copia os arquivos de dependências
+# Copie os arquivos de dependências primeiro (para melhor cache)
 COPY package*.json ./
+COPY prisma ./prisma/
 
-# Instala as dependências
-RUN npm install
+# Instale as dependências
+RUN npm ci --only=production && npm cache clean --force
 
-# Copia o restante do código da aplicação
-COPY . .
+# Copie o código da aplicação
+COPY --chown=nextjs:nodejs . .
 
-# Expõe a porta que a aplicação vai rodar
-EXPOSE 3001
+# Gere o cliente Prisma
+RUN npx prisma generate
 
-# Comando para iniciar a aplicação em modo de desenvolvimento
-CMD ["npm", "run", "dev"]
+# Exponha a porta da aplicação
+EXPOSE 3000
+
+# Mude para o usuário não-root
+USER nextjs
+
+# Comando para iniciar a aplicação
+CMD ["npm", "start"]
