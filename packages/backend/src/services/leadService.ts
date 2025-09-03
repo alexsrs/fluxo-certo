@@ -1,4 +1,5 @@
 import prisma from '../lib/prisma';
+import { LeadStatus } from '@prisma/client';
 
 interface CreateLeadData {
   name: string;
@@ -39,7 +40,7 @@ export const leadService = {
     const { page, limit, status } = options;
     const skip = (page - 1) * limit;
 
-    const where = status ? { status: status as any } : {};
+    const where = status ? { status: status as LeadStatus } : {};
 
     const [leads, total] = await Promise.all([
       prisma.lead.findMany({
