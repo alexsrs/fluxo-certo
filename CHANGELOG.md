@@ -5,6 +5,71 @@ Todas as mudanças notáveis no projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [1.1.1-beta] - 2025-09-03
+
+### 🔧 Corrigido
+
+#### Erros Críticos Resolvidos
+
+- **ContactForm.tsx**: Arquivo recriado para corrigir problemas de sintaxe e codificação
+  - Corrigidas expressões regulares malformadas
+  - Removidos caracteres de codificação incorretos (Ã¡, Ã§, etc.)
+  - Estrutura TypeScript reorganizada
+- **Menu de Navegação**: Links âncora funcionando corretamente
+  - IDs adicionados em todas as seções (#inicio, #solucoes, #beneficios, #depoimentos, #contato)
+  - Scroll suave implementado
+- **Menu Mobile**: Hamburger menu responsivo implementado
+  - Animações de abertura/fechamento
+  - Fechamento automático ao clicar em links
+
+### ✅ Melhorado
+
+#### UX/UI Enhancements
+
+- **Responsividade**: Layout otimizado para dispositivos móveis
+- **Navegação**: Experiência de usuário fluida entre seções
+- **Interatividade**: Feedbacks visuais em todos os elementos
+
+## [1.1.0-beta] - 2025-09-03
+
+### ✅ Adicionado
+
+#### Landing Page - Seções Principais
+
+- **Seção de Benefícios/Funcionalidades**: 4 cards interativos com hover effects
+  - Captação de Leads Automatizada
+  - WhatsApp Business Integrado
+  - Relatórios e Analytics
+  - Integrações Poderosas
+- **Seção de Prova Social**: Depoimentos reais com avatars e métricas de resultados
+  - 3 depoimentos detalhados de clientes
+  - 4 métricas de impacto (340% conversão, 25h economizadas, 450% ROI, 2 meses payback)
+- **Seção de FAQ**: Accordion responsivo com 5 perguntas frequentes
+  - Tempo de implementação
+  - Compatibilidade com ferramentas existentes
+  - Investimento necessário
+  - Suporte e ajustes
+  - Segurança de dados
+- **Seção CTA Final**: Call-to-action otimizado para conversão
+  - Design escuro com gradiente profissional
+  - Múltiplos benefícios destacados
+  - Botão de ação proeminente
+
+#### Melhorias de UX/UI
+
+- **Transições e Animações**: Hover effects suaves nos cards de benefícios
+- **Design Responsivo**: Layout adaptável para diferentes dispositivos
+- **Cores e Tipografia**: Paleta de cores consistente e hierarquia visual clara
+- **Microinterações**: Feedbacks visuais em elementos interativos
+
+### 🔧 Otimizado
+
+#### Performance e Estrutura
+
+- **Componentes Modulares**: Estrutura escalável e reutilizável
+- **CSS Inline Estratégico**: Estilização otimizada para prototipagem rápida
+- **Grid Layout Responsivo**: Sistema flexível para múltiplos dispositivos
+
 ## [1.0.0-beta] - 2025-09-03
 
 ### ✅ Adicionado

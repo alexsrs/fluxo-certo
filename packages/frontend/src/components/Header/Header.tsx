@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Header.css';
 import Button from '../Button/Button';
 
@@ -17,6 +17,15 @@ const Header: React.FC<HeaderProps> = ({
   ctaText = 'Falar com Especialista',
   onCTAClick,
 }) => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
   return (
     <header className="header">
       <div className="header__container">
@@ -28,30 +37,59 @@ const Header: React.FC<HeaderProps> = ({
           )}
         </div>
 
-        <nav className="header__nav">
+        <nav className={`header__nav ${isMenuOpen ? 'header__nav--open' : ''}`}>
           <ul className="header__nav-list">
             <li>
-              <a href="#solucoes" className="header__nav-link">
+              <a
+                href="#solucoes"
+                className="header__nav-link"
+                onClick={closeMenu}
+              >
                 Soluções
               </a>
             </li>
             <li>
-              <a href="#beneficios" className="header__nav-link">
+              <a
+                href="#beneficios"
+                className="header__nav-link"
+                onClick={closeMenu}
+              >
                 Benefícios
               </a>
             </li>
             <li>
-              <a href="#depoimentos" className="header__nav-link">
+              <a
+                href="#depoimentos"
+                className="header__nav-link"
+                onClick={closeMenu}
+              >
                 Casos de Sucesso
               </a>
             </li>
             <li>
-              <a href="#contato" className="header__nav-link">
+              <a
+                href="#contato"
+                className="header__nav-link"
+                onClick={closeMenu}
+              >
                 Contato
               </a>
             </li>
           </ul>
         </nav>
+
+        {/* Menu Hamburger para Mobile */}
+        <button
+          className={`header__menu-toggle ${
+            isMenuOpen ? 'header__menu-toggle--open' : ''
+          }`}
+          onClick={toggleMenu}
+          aria-label="Menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
 
         {showCTA && (
           <div className="header__cta">
