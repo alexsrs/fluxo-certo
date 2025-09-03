@@ -5,6 +5,58 @@
   border-radius: 16px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   overflow: hidden;
+
+  /* FORÇA remoção da scrollbar em TODOS os browsers */
+  overflow-y: auto;
+  scrollbar-width: none !important; /* Firefox */
+  -ms-overflow-style: none !important; /* IE/Edge */
+}
+
+.contact-form::-webkit-scrollbar {
+  display: none !important; /* Webkit browsers */
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* Aplicar também no conteúdo do formulário */
+.contact-form-content {
+  max-height: 70vh;
+  overflow-y: auto;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+.contact-form-content::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+}
+
+/* Container principal do modal */
+.modal-content {
+  overflow-y: auto;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+.modal-content::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+}
+
+/* Garantir que NENHUM elemento filho tenha scrollbar */
+.contact-form *,
+.modal-content *,
+.contact-form-content * {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+.contact-form *::-webkit-scrollbar,
+.modal-content *::-webkit-scrollbar,
+.contact-form-content *::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
 }
 
 .contact-form-header {
@@ -255,4 +307,19 @@
   margin: 0;
   opacity: 0.9;
   font-size: 1rem;
+}
+
+/* Container do formulário */
+.form-container {
+  /* Limitar altura para ativar scroll quando necessário */
+  max-height: 70vh;
+  overflow-y: auto;
+
+  /* Ocultar scrollbar visual */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.form-container::-webkit-scrollbar {
+  display: none;
 }

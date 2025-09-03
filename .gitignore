@@ -1,3 +1,6 @@
 
 /node_modules
 /packages/backend/.env
+/packages/backend/node_modules
+/packages/frontend/.env
+/packages/frontend/node_modules 
