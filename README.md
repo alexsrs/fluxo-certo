@@ -246,7 +246,7 @@ Este é um projeto em desenvolvimento ativo. Todas as contribuições seguem os 
 
 ## 📞 Contato e Suporte
 
-**Developed by:** Dagoberto (GitHub Copilot)  
+**Developed by:** alexsrs e Dagoberto (GitHub Copilot)  
 **Repository:** https://github.com/alexsrs/fluxo-certo  
 **Issues:** Use GitHub Issues para bugs e feature requests
 
