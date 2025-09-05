@@ -68,8 +68,15 @@
 - **Fase 2**: 🔄 **95% Completa** (76h de 80h estimadas)
 - **Próximo Marco**: Animações de scroll e micro-interações
 
-### ✅ Últimas Conquistas (03/09/2025)
+### ✅ Últimas Conquistas (05/09/2025)
 
+- **Testes da API Realizados**: Endpoints GET e POST /api/leads funcionando perfeitamente
+- **Migrações do Prisma Aplicadas**: Tabelas criadas no banco de dados PostgreSQL
+- **Integração Full-Stack Validada**: API + Banco + Frontend conectados e funcionando
+- **Correção de Porta do Backend**: Docker-compose atualizado para usar porta 3030 conforme .env
+- **Correção de URL da API no Frontend**: VITE_API_URL atualizado para apontar para localhost:3030
+- **Correção de Persistência de Dados**: Docker configurado com bind mounts para garantir que os dados do banco não se percam ao reiniciar a máquina
+- **Diretório de Dados Criado**: Pasta `./data/postgres` criada para armazenar dados localmente
 - **Correção de Erros Críticos**: Arquivo ContactForm.tsx corrigido e funcionando
 - **Menu de Navegação Funcional**: Links âncora funcionando perfeitamente
 - **Menu Mobile Responsivo**: Hamburger menu com animações suaves
